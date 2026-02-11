@@ -1,26 +1,14 @@
-import path from 'path';
-import { defineConfig, loadEnv } from 'vite';
+
+import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, '', '');
-
-  return {
-    base: '/Autobazar-CZ/',
-
-    server: {
-      port: 3000,
-      host: '0.0.0.0',
-    },
-    plugins: [react()],
-    define: {
-      'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-      // якщо є інші, лиши
-    },
-    resolve: {
-      alias: {
-        '@': path.resolve(__dirname, './src'),
-      }
-    }
-  };
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  // Вказуємо базовий шлях як назву вашого репозиторію на GitHub
+  base: '/AutoBazar-CZ/',
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+  },
 });
