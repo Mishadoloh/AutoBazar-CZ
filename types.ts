@@ -10,7 +10,9 @@ export interface Car {
   transmission: 'Manual' | 'Automatic';
   fuelType: 'Petrol' | 'Diesel' | 'Electric' | 'Hybrid';
   location: string;
-  imageUrl: string;
+  lat?: number;
+  lng?: number;
+  images: string[]; // Масив посилань на фото
   description: string;
   createdAt: string;
 }

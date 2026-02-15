@@ -1,7 +1,9 @@
 
 import React, { useState } from 'react';
+import { useLanguage } from '../App';
 
 const VinCheck: React.FC = () => {
+  const { t } = useLanguage();
   const [vin, setVin] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [report, setReport] = useState<any>(null);
@@ -9,11 +11,8 @@ const VinCheck: React.FC = () => {
   const handleCheck = (e: React.FormEvent) => {
     e.preventDefault();
     if (vin.length !== 17) return;
-
     setIsLoading(true);
     setReport(null);
-
-    // Simulate API call
     setTimeout(() => {
       setIsLoading(false);
       setReport({
@@ -29,22 +28,25 @@ const VinCheck: React.FC = () => {
             { date: '2022-05-15', value: 15200 },
             { date: '2023-06-01', value: 28450 }
           ],
-          status: 'Офіційна реєстрація в Чехії'
+          status: 'Officially Registered in CZ'
         }
       });
     }, 1500);
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen py-12">
+    <div className="bg-[#f8fafc] dark:bg-slate-950 min-h-screen pt-32 pb-24 transition-colors duration-500">
       <div className="max-w-4xl mx-auto px-4">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-extrabold text-gray-900 mb-4">Перевірка VIN-коду</h1>
-          <p className="text-lg text-gray-600">Дізнайтеся повну історію автомобіля за 17-значним кодом</p>
+        <div className="text-center mb-16 animate-slide-up">
+          <div className="inline-block px-4 py-1.5 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-[10px] font-black uppercase tracking-widest mb-6">
+            Identity Check
+          </div>
+          <h1 className="text-4xl md:text-6xl font-black text-slate-900 dark:text-white mb-4 tracking-tighter uppercase">{t.vin.title}</h1>
+          <p className="text-lg text-slate-500 dark:text-slate-400 font-medium">{t.vin.subtitle}</p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden mb-12">
-          <div className="p-8">
+        <div className="bg-white dark:bg-slate-900 rounded-[48px] shadow-2xl overflow-hidden mb-12 border border-slate-50 dark:border-slate-800 animate-slide-up [animation-delay:100ms] transition-colors">
+          <div className="p-10 md:p-14">
             <form onSubmit={handleCheck} className="flex flex-col md:flex-row gap-4">
               <input 
                 required
@@ -52,80 +54,71 @@ const VinCheck: React.FC = () => {
                 value={vin}
                 onChange={(e) => setVin(e.target.value)}
                 type="text" 
-                placeholder="Введіть 17 символів VIN-коду..." 
-                className="flex-grow border-2 border-gray-200 rounded-xl p-4 text-lg font-mono tracking-widest focus:border-blue-500 focus:outline-none transition-colors"
+                placeholder={t.vin.placeholder}
+                className="flex-grow border-none bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 text-xl font-black tracking-widest text-slate-900 dark:text-white focus:ring-4 focus:ring-blue-600/20 focus:outline-none transition-all"
               />
               <button 
                 disabled={isLoading || vin.length !== 17}
-                className="bg-blue-600 text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition-colors disabled:bg-gray-300"
+                className="bg-blue-600 text-white px-12 py-6 rounded-2xl font-black text-lg uppercase tracking-widest hover:bg-blue-700 transition-all shadow-xl shadow-blue-600/20 disabled:bg-slate-200 dark:disabled:bg-slate-800 disabled:shadow-none"
               >
-                {isLoading ? 'Перевірка...' : 'Перевірити'}
+                {isLoading ? '...' : t.vin.checkBtn}
               </button>
             </form>
-            <p className="mt-4 text-sm text-gray-500">VIN-код можна знайти в технічному паспорті автомобіля або під лобовим склом.</p>
+            <p className="mt-8 text-[11px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest leading-relaxed text-center">
+              * VIN can be found on the dashboard or your technical passport (VTP).
+            </p>
           </div>
         </div>
 
-        {isLoading && (
-          <div className="flex justify-center py-20">
-            <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-600"></div>
-          </div>
-        )}
-
         {report && (
-          <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-green-50 border border-green-200 p-6 rounded-2xl flex items-center">
-              <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white mr-4">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+          <div className="space-y-8 animate-slide-up">
+            <div className="bg-green-50 dark:bg-green-900/20 border border-green-100 dark:border-green-900/40 p-10 rounded-[40px] flex items-center shadow-lg shadow-green-500/5">
+              <div className="w-16 h-16 bg-green-500 rounded-2xl flex items-center justify-center text-white mr-8 shadow-xl shadow-green-500/30">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>
               </div>
               <div>
-                <h3 className="font-bold text-green-900 text-lg">Автомобіль знайдено в базі</h3>
-                <p className="text-green-700">Офіційні дані для VIN: {report.vin}</p>
+                <h3 className="font-black text-green-900 dark:text-green-400 text-2xl tracking-tight uppercase">Vehicle Found</h3>
+                <p className="text-green-700/70 dark:text-green-500/70 font-black text-sm tracking-[0.2em] uppercase">{report.vin}</p>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
-                <h3 className="font-bold text-gray-900 mb-6 flex items-center">
-                  <svg className="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                  Технічні дані
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="bg-white dark:bg-slate-900 p-10 rounded-[48px] shadow-2xl border border-slate-100 dark:border-slate-800 transition-colors">
+                <h3 className="font-black text-slate-900 dark:text-white mb-10 flex items-center uppercase text-xs tracking-widest">
+                  <div className="w-2 h-6 bg-blue-600 rounded-full mr-4"></div>
+                  Specifications
                 </h3>
-                <ul className="space-y-4">
-                  <li className="flex justify-between border-b border-gray-50 pb-2">
-                    <span className="text-gray-500">Марка</span>
-                    <span className="font-bold">{report.data.brand}</span>
-                  </li>
-                  <li className="flex justify-between border-b border-gray-50 pb-2">
-                    <span className="text-gray-500">Модель</span>
-                    <span className="font-bold">{report.data.model}</span>
-                  </li>
-                  <li className="flex justify-between border-b border-gray-50 pb-2">
-                    <span className="text-gray-500">Рік</span>
-                    <span className="font-bold">{report.data.year}</span>
-                  </li>
-                  <li className="flex justify-between border-b border-gray-50 pb-2">
-                    <span className="text-gray-500">Статус</span>
-                    <span className="text-blue-600 font-medium">{report.data.status}</span>
-                  </li>
+                <ul className="space-y-6">
+                  {[
+                    { l: 'Brand', v: report.data.brand },
+                    { l: 'Model', v: report.data.model },
+                    { l: 'Year', v: report.data.year },
+                    { l: 'Status', v: report.data.status, h: true }
+                  ].map((item, i) => (
+                    <li key={i} className="flex justify-between items-center border-b border-slate-50 dark:border-slate-800 pb-5">
+                      <span className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">{item.l}</span>
+                      <span className={`font-black text-lg tracking-tight ${item.h ? 'text-blue-600 dark:text-blue-400' : 'text-slate-900 dark:text-white'}`}>{item.v}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
 
-              <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
-                <h3 className="font-bold text-gray-900 mb-6 flex items-center">
-                  <svg className="w-5 h-5 mr-2 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                  Історія ДТП та пробігу
+              <div className="bg-white dark:bg-slate-900 p-10 rounded-[48px] shadow-2xl border border-slate-100 dark:border-slate-800 transition-colors">
+                <h3 className="font-black text-slate-900 dark:text-white mb-10 flex items-center uppercase text-xs tracking-widest">
+                  <div className="w-2 h-6 bg-red-500 rounded-full mr-4"></div>
+                  History Record
                 </h3>
-                <div className="space-y-4">
-                  <div className="p-4 bg-gray-50 rounded-xl">
-                    <p className="text-sm text-gray-500 mb-1">Кількість зафіксованих ДТП</p>
-                    <p className="text-2xl font-black text-green-600">{report.data.accidents}</p>
+                <div className="space-y-8">
+                  <div className="p-8 bg-slate-50 dark:bg-slate-800/50 rounded-3xl">
+                    <p className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-2">Accidents Found</p>
+                    <p className="text-5xl font-black text-green-600 dark:text-green-400 tracking-tighter">{report.data.accidents}</p>
                   </div>
-                  <div className="space-y-2">
-                    <p className="text-sm font-semibold text-gray-700">Останні записи пробігу:</p>
+                  <div className="space-y-4">
+                    <p className="text-[10px] font-black text-slate-900 dark:text-white uppercase tracking-widest">Mileage Logs:</p>
                     {report.data.mileageHistory.map((h: any, i: number) => (
-                      <div key={i} className="flex justify-between text-sm">
-                        <span>{h.date}</span>
-                        <span className="font-mono font-bold">{h.value.toLocaleString()} км</span>
+                      <div key={i} className="flex justify-between items-center p-4 bg-slate-50 dark:bg-slate-800/30 rounded-2xl">
+                        <span className="font-black text-slate-400 dark:text-slate-500 uppercase text-[9px] tracking-widest">{h.date}</span>
+                        <span className="font-black text-slate-900 dark:text-white">{h.value.toLocaleString()} km</span>
                       </div>
                     ))}
                   </div>

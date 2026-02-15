@@ -13,17 +13,14 @@ export const MOCK_CARS: Car[] = [
     transmission: 'Automatic',
     fuelType: 'Petrol',
     location: 'Прага',
-    imageUrl: 'https://images.unsplash.com/photo-1606152421802-db97b9c7a11b?auto=format&fit=crop&q=80&w=1000',
-    description: `Автомобіль в ідеальному стані, купувався та обслуговувався виключно у офіційного дилера Skoda в Чехії. Один власник.
-
-Основні переваги:
-- Повна сервісна історія в електронній базі.
-- Топова комплектація RS: спортивні сидіння, Matrix LED фари, адаптивна підвіска DCC.
-- Система допомоги водію Travel Assist (адаптивний круїз-контроль, утримання в смузі).
-- Безключовий доступ на всі двері.
-- Преміальна акустика Canton.
-
-Авто не потребує жодних вкладень. На гарантії до кінця 2025 року. Готове до перевірки на будь-якому СТО.`,
+    lat: 50.0755,
+    lng: 14.4378,
+    images: [
+      'https://images.unsplash.com/photo-1606152421802-db97b9c7a11b?auto=format&fit=crop&q=80&w=1000',
+      'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&q=80&w=1000',
+      'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1000'
+    ],
+    description: `Автомобіль в ідеальному стані, перший власник у Чехії. Обслуговувався виключно на офіційному сервісі Skoda. Максимальна комплектація RS з матричними фарами та спортивними сидіннями. Багата історія обслуговування, сервісна книжка в наявності.`,
     createdAt: '2023-10-01'
   },
   {
@@ -37,17 +34,14 @@ export const MOCK_CARS: Car[] = [
     transmission: 'Automatic',
     fuelType: 'Diesel',
     location: 'Брно',
-    imageUrl: 'https://images.unsplash.com/photo-1542281286-9e0a16bb7366?auto=format&fit=crop&q=80&w=1000',
-    description: `Елегантний та надзвичайно комфортний універсал для довгих подорожей. Пригнаний з Німеччини в 2021 році для особистого користування.
-
-Особливості комплектації:
-- Пневматична підвіска з регулюванням жорсткості.
-- Віртуальна панель приладів Audi Virtual Cockpit.
-- Чотиризонний клімат-контроль.
-- Панорамний дах з люком.
-- Всі асистенти безпеки (Pre-sense, Side Assist).
-
-Нещодавно проведено велике ТО: замінено мастила в двигуні та КПП, гальмівні диски та колодки. В комплекті зимова гума на оригінальних дисках R18.`,
+    lat: 49.1951,
+    lng: 16.6068,
+    images: [
+      'https://images.unsplash.com/photo-1542281286-9e0a16bb7366?auto=format&fit=crop&q=80&w=1000',
+      'https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&q=80&w=1000',
+      'https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&q=80&w=1000'
+    ],
+    description: `Преміальний універсал для комфортних подорожей. Адаптивна пневматична підвіска, подвійне скло для кращої звукоізоляції. Стан нового автомобіля. Комплект зимової гуми на дисках у подарунок.`,
     createdAt: '2023-09-25'
   },
   {
@@ -61,17 +55,14 @@ export const MOCK_CARS: Car[] = [
     transmission: 'Automatic',
     fuelType: 'Electric',
     location: 'Острава',
-    imageUrl: 'https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&q=80&w=1000',
-    description: `Максимальна версія Performance: розгін 0-100 км/год за 3.3 секунди. Автомобіль європейської збірки (Giga Berlin), що гарантує високу якість матеріалів.
-
-Технічні деталі:
-- Встановлено Full Self-Driving (FSD) пакет (вартістю 7500€).
-- Тепловий насос (значно економить запас ходу взимку).
-- Карбоновий спойлер та спортивні гальма Brembo.
-- Стан батареї 98% (SOH).
-- Преміальний білий салон.
-
-Автомобіль заряджався переважно вдома від повільної зарядки, що зберегло ресурс батареї. В комплекті перехідник Type 2 та зарядний пристрій від 220V.`,
+    lat: 49.8209,
+    lng: 18.2625,
+    images: [
+      'https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&q=80&w=1000',
+      'https://images.unsplash.com/photo-1536700503339-1e4b06520771?auto=format&fit=crop&q=80&w=1000',
+      'https://images.unsplash.com/photo-1579935110464-fcd041be62d0?auto=format&fit=crop&q=80&w=1000'
+    ],
+    description: `Максимальна версія Performance з неймовірною динамікою. Автопілот, білий салон, панорамний дах. Тільки що пройшла повну діагностику в Tesla сервісі.`,
     createdAt: '2023-11-05'
   },
   {
@@ -85,16 +76,14 @@ export const MOCK_CARS: Car[] = [
     transmission: 'Automatic',
     fuelType: 'Petrol',
     location: 'Пльзень',
-    imageUrl: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=1000',
-    description: `Новий автомобіль в ексклюзивній комплектації GR Sport. Справжня легенда, яка поєднує в собі неймовірну прохідність та розкіш.
-
-Переваги версії GR Sport:
-- Система E-KDSS (стабілізація підвіски).
-- Блокування переднього, заднього та центрального диференціалів.
-- Спеціальний дизайн екстер'єру та інтер'єру з червоною прострочкою.
-- Чорні матові диски R18.
-
-Авто на офіційній гарантії Toyota. Встановлено додатковий захист двигуна та професійну протиугінну систему. Стан абсолютно нового авто.`,
+    lat: 49.7384,
+    lng: 13.3736,
+    images: [
+      'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=1000',
+      'https://images.unsplash.com/photo-1626647450221-4a2c33632117?auto=format&fit=crop&q=80&w=1000',
+      'https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&q=80&w=1000'
+    ],
+    description: `Абсолютно новий автомобіль у лімітованій версії GR Sport. Найкращий позашляховик у світі з максимальним рівнем безпеки та розкоші. Гарантія 3 роки.`,
     createdAt: '2023-12-10'
   },
   {
@@ -108,16 +97,14 @@ export const MOCK_CARS: Car[] = [
     transmission: 'Manual',
     fuelType: 'Petrol',
     location: 'Прага',
-    imageUrl: 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&q=80&w=1000',
-    description: `Класичний "хот-хетч" для тих, хто цінує драйв. Автомобіль вихідного дня, доглянутий та технічно вдосконалений.
-
-Що було зроблено:
-- Професійний чіп-тюнінг Stage 1 від Revo (зараз близько 300 к.с.).
-- Встановлено впускну систему Racingline.
-- Вихлопна система зі спортивним каталізатором (приємний звук, проходить техогляд).
-- Механічна КПП з короткохідною кулісою.
-
-Салон в ідеальному стані, фірмова клітинка GTI. Тільки якісне пальне (100-й бензин) та заміна мастила кожні 7000 км.`,
+    lat: 50.0835,
+    lng: 14.4178,
+    images: [
+      'https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&q=80&w=1000',
+      'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&q=80&w=1000',
+      'https://images.unsplash.com/photo-1494905998402-395d579af36f?auto=format&fit=crop&q=80&w=1000'
+    ],
+    description: `Заряджений хетчбек для справжніх ентузіастів. Stage 1 від Revo (300 к.с.), тюнінгована вихлопна система, диски BBS. Авто приносить море емоцій.`,
     createdAt: '2023-11-15'
   },
   {
@@ -131,18 +118,14 @@ export const MOCK_CARS: Car[] = [
     transmission: 'Automatic',
     fuelType: 'Diesel',
     location: 'Ліберець',
-    imageUrl: 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&q=80&w=1000',
-    description: `Статусний кросовер-купе в ідеальному технічному та косметичному стані. Весь кузов з першого дня затягнутий у захисну бронеплівку.
-
-Особливості комплектації:
-- Повний AMG пакет екстер'єру та інтер'єру.
-- Акустична система Burmester Surround Sound.
-- Камери 360 градусів з 3D проекцією.
-- Панорамний зсувний дах.
-- Вентиляція та підігрів передніх сидінь.
-- Навігація з доповненою реальністю (MBUX).
-
-Автомобіль обслуговувався виключно на офіційному сервісі Mercedes-Benz. Без жодних підкрасів та ДТП.`,
+    lat: 50.7671,
+    lng: 15.0562,
+    images: [
+      'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&q=80&w=1000',
+      'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80&w=1000',
+      'https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&q=80&w=1000'
+    ],
+    description: `Елегантність та потужність в одному кузові. AMG пакет, салон з преміальної шкіри Nappa, акустика Burmester. Стан нового авто, без жодного підкрасу.`,
     createdAt: '2023-12-01'
   }
 ];

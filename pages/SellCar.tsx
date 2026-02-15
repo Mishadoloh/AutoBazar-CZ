@@ -4,11 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { Car } from '../types';
 
 interface SellCarProps {
-  addCar: (car: Car) => void;
+  addCar: (car: Car) => Promise<void>;
 }
 
 const SellCar: React.FC<SellCarProps> = ({ addCar }) => {
   const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [imagesInput, setImagesInput] = useState('');
   const [formData, setFormData] = useState({
     brand: '',
     model: '',
@@ -18,108 +20,101 @@ const SellCar: React.FC<SellCarProps> = ({ addCar }) => {
     engine: '',
     transmission: 'Automatic',
     fuelType: 'Petrol',
-    location: 'Київ',
+    location: 'Прага',
     description: '',
-    imageUrl: ''
+    images: [] as string[]
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const newCar: Car = {
-      ...formData,
-      id: Math.random().toString(36).substr(2, 9),
-      createdAt: new Date().toISOString(),
-      transmission: formData.transmission as any,
-      fuelType: formData.fuelType as any
+    setIsSubmitting(true);
+    
+    // Split input by comma or space to get image array
+    const images = imagesInput.split(/[\s,]+/).filter(url => url.startsWith('http'));
+    const finalData = { 
+      ...formData, 
+      images: images.length > 0 ? images : ['https://images.unsplash.com/photo-1494976388531-d1058494cdd8'],
+      lat: 50.0755,
+      lng: 14.4378
     };
-    addCar(newCar);
-    navigate('/');
+
+    try {
+      await addCar(finalData as any);
+      navigate('/');
+    } catch (error) {
+      alert("Помилка при збереженні оголошення");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: name === 'year' || name === 'price' || name === 'mileage' ? Number(value) : value }));
+    setFormData(prev => ({ 
+      ...prev, 
+      [name]: name === 'year' || name === 'price' || name === 'mileage' ? Number(value) : value 
+    }));
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen py-12">
-      <div className="max-w-3xl mx-auto px-4">
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-          <div className="bg-blue-600 p-8 text-white">
-            <h1 className="text-3xl font-bold">Продати автомобіль</h1>
-            <p className="mt-2 text-blue-100 text-lg">Заповніть форму, щоб розмістити ваше оголошення</p>
+    <div className="bg-[#f8fafc] dark:bg-slate-950 min-h-screen py-32 transition-colors duration-300">
+      <div className="max-w-4xl mx-auto px-4">
+        <div className="bg-white dark:bg-slate-900 rounded-[48px] shadow-2xl overflow-hidden border border-slate-100 dark:border-slate-800 animate-slide-up">
+          <div className="bg-slate-900 dark:bg-blue-600 p-12 text-white relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full translate-x-1/2 -translate-y-1/2"></div>
+            <h1 className="text-4xl font-black tracking-tighter uppercase mb-2 relative z-10">Створити оголошення</h1>
+            <p className="text-slate-400 dark:text-blue-100 font-medium relative z-10">Ваше авто побачать тисячі зацікавлених покупців у Чехії.</p>
           </div>
           
-          <form onSubmit={handleSubmit} className="p-8 space-y-8">
-            <section>
-              <h3 className="text-xl font-bold text-gray-900 mb-6 border-b pb-2">Основна інформація</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Марка</label>
-                  <input required name="brand" value={formData.brand} onChange={handleChange} type="text" placeholder="Напр. BMW" className="w-full border-gray-300 rounded-lg p-3 bg-gray-50 border focus:ring-blue-500" />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Модель</label>
-                  <input required name="model" value={formData.model} onChange={handleChange} type="text" placeholder="Напр. X5" className="w-full border-gray-300 rounded-lg p-3 bg-gray-50 border focus:ring-blue-500" />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Рік випуску</label>
-                  <input required name="year" value={formData.year} onChange={handleChange} type="number" min="1900" max="2025" className="w-full border-gray-300 rounded-lg p-3 bg-gray-50 border focus:ring-blue-500" />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Ціна (USD)</label>
-                  <input required name="price" value={formData.price} onChange={handleChange} type="number" className="w-full border-gray-300 rounded-lg p-3 bg-gray-50 border focus:ring-blue-500" />
-                </div>
+          <form onSubmit={handleSubmit} className="p-12 space-y-12">
+            <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="col-span-full">
+                <h3 className="text-xs font-black text-blue-600 dark:text-blue-400 uppercase tracking-widest mb-2 flex items-center">
+                  <span className="w-8 h-px bg-blue-600 dark:bg-blue-400 mr-3"></span>
+                  Параметри автомобіля
+                </h3>
+              </div>
+              <div className="space-y-2">
+                <label className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest ml-1">Марка</label>
+                <input required name="brand" value={formData.brand} onChange={handleChange} type="text" placeholder="Напр. Skoda" className="w-full bg-slate-50 dark:bg-slate-800 border-none rounded-2xl p-4 text-slate-800 dark:text-white font-bold focus:ring-2 focus:ring-blue-600 transition-all" />
+              </div>
+              <div className="space-y-2">
+                <label className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest ml-1">Модель</label>
+                <input required name="model" value={formData.model} onChange={handleChange} type="text" placeholder="Напр. Octavia" className="w-full bg-slate-50 dark:bg-slate-800 border-none rounded-2xl p-4 text-slate-800 dark:text-white font-bold focus:ring-2 focus:ring-blue-600 transition-all" />
+              </div>
+              <div className="space-y-2">
+                <label className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest ml-1">Рік випуску</label>
+                <input required name="year" value={formData.year} onChange={handleChange} type="number" min="1900" max="2025" className="w-full bg-slate-50 dark:bg-slate-800 border-none rounded-2xl p-4 text-slate-800 dark:text-white font-bold focus:ring-2 focus:ring-blue-600 transition-all" />
+              </div>
+              <div className="space-y-2">
+                <label className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest ml-1">Ціна (EUR)</label>
+                <input required name="price" value={formData.price} onChange={handleChange} type="number" className="w-full bg-slate-50 dark:bg-slate-800 border-none rounded-2xl p-4 text-blue-600 dark:text-blue-400 font-black text-xl focus:ring-2 focus:ring-blue-600 transition-all" />
               </div>
             </section>
 
-            <section>
-              <h3 className="text-xl font-bold text-gray-900 mb-6 border-b pb-2">Технічні характеристики</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Пробіг (км)</label>
-                  <input required name="mileage" value={formData.mileage} onChange={handleChange} type="number" className="w-full border-gray-300 rounded-lg p-3 bg-gray-50 border focus:ring-blue-500" />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Двигун</label>
-                  <input required name="engine" value={formData.engine} onChange={handleChange} type="text" placeholder="Напр. 2.0L Turbo" className="w-full border-gray-300 rounded-lg p-3 bg-gray-50 border focus:ring-blue-500" />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Коробка передач</label>
-                  <select name="transmission" value={formData.transmission} onChange={handleChange} className="w-full border-gray-300 rounded-lg p-3 bg-gray-50 border focus:ring-blue-500">
-                    <option value="Automatic">Автомат</option>
-                    <option value="Manual">Механіка</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Паливо</label>
-                  <select name="fuelType" value={formData.fuelType} onChange={handleChange} className="w-full border-gray-300 rounded-lg p-3 bg-gray-50 border focus:ring-blue-500">
-                    <option value="Petrol">Бензин</option>
-                    <option value="Diesel">Дизель</option>
-                    <option value="Electric">Електро</option>
-                    <option value="Hybrid">Гібрид</option>
-                  </select>
-                </div>
-              </div>
+            <section className="space-y-4">
+               <label className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest ml-1">Посилання на фото (через кому)</label>
+               <textarea 
+                  required
+                  placeholder="https://image1.jpg, https://image2.jpg..."
+                  className="w-full bg-slate-50 dark:bg-slate-800 border-none rounded-2xl p-4 text-slate-800 dark:text-white font-medium focus:ring-2 focus:ring-blue-600 transition-all h-24"
+                  value={imagesInput}
+                  onChange={(e) => setImagesInput(e.target.value)}
+               />
             </section>
 
-            <section>
-              <h3 className="text-xl font-bold text-gray-900 mb-6 border-b pb-2">Фото та опис</h3>
-              <div className="space-y-6">
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">URL зображення</label>
-                  <input required name="imageUrl" value={formData.imageUrl} onChange={handleChange} type="url" placeholder="Вставте посилання на фото" className="w-full border-gray-300 rounded-lg p-3 bg-gray-50 border focus:ring-blue-500" />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Опис</label>
-                  <textarea required name="description" value={formData.description} onChange={handleChange} rows={5} placeholder="Розкажіть про стан авто, комплектацію..." className="w-full border-gray-300 rounded-lg p-3 bg-gray-50 border focus:ring-blue-500" />
-                </div>
-              </div>
+            <section className="space-y-2">
+              <label className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest ml-1">Опис стану та комплектації</label>
+              <textarea required name="description" value={formData.description} onChange={handleChange} rows={5} placeholder="Сервісна книжка, стан салону, додаткове обладнання..." className="w-full bg-slate-50 dark:bg-slate-800 border-none rounded-2xl p-6 text-slate-800 dark:text-white font-medium focus:ring-2 focus:ring-blue-600 transition-all resize-none" />
             </section>
 
-            <div className="pt-8 border-t">
-              <button type="submit" className="w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-blue-700 shadow-lg transform active:scale-[0.98] transition-all">
-                Опублікувати оголошення
+            <div className="pt-6">
+              <button 
+                type="submit" 
+                disabled={isSubmitting}
+                className="w-full bg-blue-600 text-white py-6 rounded-2xl font-black text-xl uppercase tracking-widest hover:bg-blue-700 shadow-2xl shadow-blue-500/30 active:scale-[0.98] transition-all disabled:opacity-50"
+              >
+                {isSubmitting ? 'Публікація...' : 'Опублікувати оголошення'}
               </button>
             </div>
           </form>
