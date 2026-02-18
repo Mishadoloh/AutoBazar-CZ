@@ -16,9 +16,9 @@ export const MOCK_CARS: Car[] = [
     lat: 50.0755,
     lng: 14.4378,
     images: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/2020_Skoda_Octavia_vRS_TSI_iV_Estate_1.4.jpg/1200px-2020_Skoda_Octavia_vRS_TSI_iV_Estate_1.4.jpg',
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/2020_Skoda_Octavia_vRS_TSI_iV_Estate_1.4_Rear.jpg/1200px-2020_Skoda_Octavia_vRS_TSI_iV_Estate_1.4_Rear.jpg',
-      'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&q=80&w=1000'
+      'https://images.unsplash.com/photo-1606152421802-db97b9c7a11b?auto=format&fit=crop&q=80&w=1000',
+      'https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&q=80&w=1000',
+      'https://images.unsplash.com/photo-1493238792015-fa094a367259?auto=format&fit=crop&q=80&w=1000'
     ],
     description: `Автомобіль в ідеальному стані, перший власник у Чехії. Обслуговувався виключно на офіційному сервісі Skoda. Максимальна комплектація RS з матричними фарами та спортивними сидіннями. Багата історія обслуговування, сервісна книжка в наявності.`,
     createdAt: '2023-10-01'
@@ -37,9 +37,9 @@ export const MOCK_CARS: Car[] = [
     lat: 49.1951,
     lng: 16.6068,
     images: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/2018_Audi_A6_Avant_50_TDi_Quattro_Automatic_3.0_Front.jpg/1200px-2018_Audi_A6_Avant_50_TDi_Quattro_Automatic_3.0_Front.jpg',
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/2018_Audi_A6_Avant_50_TDi_Quattro_Automatic_3.0_Rear.jpg/1200px-2018_Audi_A6_Avant_50_TDi_Quattro_Automatic_3.0_Rear.jpg',
-      'https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&q=80&w=1000'
+      'https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&q=80&w=1000',
+      'https://images.unsplash.com/photo-1542281286-9e0a16bb7366?auto=format&fit=crop&q=80&w=1000',
+      'https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&q=80&w=1000'
     ],
     description: `Преміальний універсал для комфортних подорожей. Адаптивна пневматична підвіска, подвійне скло для кращої звукоізоляції. Стан нового автомобіля. Комплект зимової гуми на дисках у подарунок.`,
     createdAt: '2023-09-25'
@@ -79,9 +79,9 @@ export const MOCK_CARS: Car[] = [
     lat: 49.7384,
     lng: 13.3736,
     images: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/2021_Toyota_Land_Cruiser_ZX_%28VJA300W%29.jpg/1200px-2021_Toyota_Land_Cruiser_ZX_%28VJA300W%29.jpg',
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/2021_Toyota_Land_Cruiser_ZX_%28VJA300W%29_rear.jpg/1200px-2021_Toyota_Land_Cruiser_ZX_%28VJA300W%29_rear.jpg',
-      'https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&q=80&w=1000'
+      'https://images.unsplash.com/photo-1594235372071-c50f8ee59f99?auto=format&fit=crop&q=80&w=1000',
+      'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&q=80&w=1000',
+      'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=1000'
     ],
     description: `Абсолютно новий автомобіль у лімітованій версії GR Sport. Найкращий позашляховик у світі з максимальним рівнем безпеки та розкоші. Гарантія 3 роки.`,
     createdAt: '2023-12-10'
@@ -100,9 +100,9 @@ export const MOCK_CARS: Car[] = [
     lat: 50.0835,
     lng: 14.4178,
     images: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/2020_Volkswagen_Golf_GTI_TSI_S-A_2.0_Front.jpg/1200px-2020_Volkswagen_Golf_GTI_TSI_S-A_2.0_Front.jpg',
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/2020_Volkswagen_Golf_GTI_TSI_S-A_2.0_Rear.jpg/1200px-2020_Volkswagen_Golf_GTI_TSI_S-A_2.0_Rear.jpg',
-      'https://images.unsplash.com/photo-1494905998402-395d579af36f?auto=format&fit=crop&q=80&w=1000'
+      'https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&q=80&w=1000',
+      'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&q=80&w=1000',
+      'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=1000'
     ],
     description: `Заряджений хетчбек для справжніх ентузіастів. Stage 1 від Revo (300 к.с.), тюнінгована вихлопна система, диски BBS. Авто приносить море емоцій.`,
     createdAt: '2023-11-15'
@@ -121,8 +121,8 @@ export const MOCK_CARS: Car[] = [
     lat: 50.7671,
     lng: 15.0562,
     images: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Mercedes-AMG_GLE_53_Coupe_%28C167%29_IMG_3306.jpg/1200px-Mercedes-AMG_GLE_53_Coupe_%28C167%29_IMG_3306.jpg',
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Mercedes-AMG_GLE_53_Coupe_%28C167%29_IMG_3307.jpg/1200px-Mercedes-AMG_GLE_53_Coupe_%28C167%29_IMG_3307.jpg',
+      'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?auto=format&fit=crop&q=80&w=1000',
+      'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&q=80&w=1000',
       'https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&q=80&w=1000'
     ],
     description: `Елегантність та потужність в одному кузові. AMG пакет, салон з преміальної шкіри Nappa, акустика Burmester. Стан нового авто, без жодного підкрасу.`,
