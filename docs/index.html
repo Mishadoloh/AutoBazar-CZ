@@ -40,7 +40,16 @@
         .leaflet-container { font-family: inherit; z-index: 1; border-radius: 24px; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
     </style>
-  <script type="module" crossorigin src="./assets/index-MOysAZjh.js"></script>
+    <script>
+      (function () {
+        var isGitHub = /github\.io$/.test(location.hostname);
+        var repoPath = '/AutoBazar-CZ/';
+        if (isGitHub && location.pathname.endsWith(repoPath) && !location.pathname.includes('/docs/')) {
+          location.replace(location.pathname + 'docs/');
+        }
+      })();
+    </script>
+  <script type="module" crossorigin src="./assets/index-CyHxKAPN.js"></script>
 </head>
 <body class="overflow-x-hidden">
     <div id="root"></div>
