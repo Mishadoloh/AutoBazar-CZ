@@ -40,6 +40,15 @@
         .leaflet-container { font-family: inherit; z-index: 1; border-radius: 24px; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
     </style>
+    <script>
+      (function () {
+        var isGitHub = /github\.io$/.test(location.hostname);
+        var repoPath = '/AutoBazar-CZ/';
+        if (isGitHub && location.pathname.endsWith(repoPath) && !location.pathname.includes('/docs/')) {
+          location.replace(location.pathname + 'docs/');
+        }
+      })();
+    </script>
 </head>
 <body class="overflow-x-hidden">
     <div id="root"></div>
